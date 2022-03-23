@@ -1,7 +1,20 @@
 import React from "react"
 
 export default function Sidebar(props) {
-    const noteElements = props.notes.map((note, index) => (
+
+    function getFirstLine(text) {
+      let firstLine = text.split('\n', 1)[0];
+      while(firstLine.includes("#")) {
+        firstLine = firstLine.replace("#", "");
+      }
+      while(firstLine.includes("*")) {
+        firstLine = firstLine.replace("*", "");
+      }
+      firstLine = firstLine.trim()
+      return firstLine;
+    }
+
+    const noteElements = props.notes.map((note) => (
         <div key={note.id}>
             <div
                 
@@ -10,7 +23,7 @@ export default function Sidebar(props) {
                 }`}
                 onClick={() => props.setCurrentNoteId(note.id)}
             >
-                <h4 className="text-snippet">Note {index + 1}</h4>
+                <h4 className="text-snippet">{getFirstLine(note.body)}</h4>
             </div>
         </div>
     ))
