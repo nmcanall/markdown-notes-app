@@ -14,6 +14,11 @@ export default function Sidebar(props) {
       return firstLine;
     }
 
+    function deleteNote(event, noteId) {
+        event.stopPropagation();
+        props.setNotes(props.notes.filter(oldNote => oldNote.id !== noteId));
+    }
+
     const noteElements = props.notes.map((note) => (
         <div key={note.id}>
             <div
@@ -24,6 +29,12 @@ export default function Sidebar(props) {
                 onClick={() => props.setCurrentNoteId(note.id)}
             >
                 <h4 className="text-snippet">{getFirstLine(note.body)}</h4>
+                <button 
+                    className="delete-btn"
+                    onClick={(event) => deleteNote(event, note.id)}
+                >
+                    <i className="gg-trash trash-icon"></i>
+                </button>
             </div>
         </div>
     ))

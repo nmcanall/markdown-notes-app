@@ -62,6 +62,7 @@ export default function App() {
                     currentNote={findCurrentNote()}
                     setCurrentNoteId={setCurrentNoteId}
                     newNote={createNewNote}
+                    setNotes={setNotes}
                 />
                 {
                     currentNoteId && 
